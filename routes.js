@@ -1,6 +1,5 @@
 const fs = require('fs');
 
-
 const requestHandler = (req, res) => {
     // accessing req object
     // console.log(req.url, req.method, req.headers);
