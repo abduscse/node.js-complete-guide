@@ -1,7 +1,6 @@
 const path = require('path');
 
 const express = require('express');
-const bodyParser = require('body-parser');
 
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
@@ -14,7 +13,12 @@ const app = express();
 //     next();
 // });
 
-app.use(bodyParser.urlencoded({ extended: false }));
+// when bodyParser is available in express itself;
+app.use(express.urlencoded({ extended: false }));
+
+// Alternatively
+// const bodyParser = require('body-parser');
+// app.use(bodyParser.urlencoded({ extended: false }));
 
 // serving files statically.
 app.use(express.static(path.join(__dirname, 'public')));
