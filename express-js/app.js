@@ -18,6 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // serving files statically.
 app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static('public'));
 
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
