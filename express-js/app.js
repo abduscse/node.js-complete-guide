@@ -2,10 +2,18 @@ const path = require('path');
 
 const express = require('express');
 
-const adminRoutes = require('./routes/admin');
+const adminModule = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
 const app = express();
+
+// app.set('view engine', 'jade');
+app.set('view engine', 'pug');
+
+// views is set by default.
+app.set('views', 'express-js/views/pug-templates');
+
+// console.log(process.cwd());
 
 // path "/" runs for all the requests
 // app.use('/', (req, res, next) => {
@@ -24,12 +32,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use(express.static('public'));
 
-app.use('/admin', adminRoutes);
+app.use('/admin', adminModule.routes);
 app.use(shopRoutes);
 
 app.use((req, res, next) => {
     // res.status(404).send('<h1>404 Page Not Found</h1>');
-    res.sendFile(path.join(__dirname, 'views', '404.html'));
+
+    // res.sendFile(path.join(__dirname, 'views', '404.html'));
+
+    res.render('404');
 });
 
 // const http = require('http');
